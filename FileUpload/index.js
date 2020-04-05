@@ -7,7 +7,7 @@ const workbook = require('workbook');
 app.use(express.urlencoded());
 
 app.use('/uploads',express.static(__dirname+'/uploads'));//tell express where the uploads directory resides
-// app.use(express.static('./assets'));/tell express where the static files reside
+app.use(express.static('./assets'));//tell express where the static files reside
 app.use('/',require('./routes'));//requring routes
 
 app.listen(port,function(err){
