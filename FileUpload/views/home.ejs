@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    
+</head>
+<body>
+    <br><br>
+    <!-- Div to search the data -->
+    <div>
+        <input type="text" id="search-text">
+        <button id="search">search</button>
+        <br><br>
+    </div>
+    <br><br>
+    <!-- form to upload the csv file -->
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="csvfile">
+        <button>upload</button>
+    </form>
+    <br> <br>
+
+    <!-- div to display all the uploaded files -->
+    <div id="list-files">
+        <ul>
+            <% for(let f of file) {%>
+                <li>
+                    <p><a href="/read/<%= f.id%>"><%= f.file %></a></p>
+                </li>
+            <%}%>
+        </ul>
+    </div>
+
+    <!-- div to display the selected files contents in tabular format -->
+    <div>
+        <% if(data.length!=0) {%>
+            <!-- <a href="/sort"><button id="sort-asc">asc</button></a> -->
+            <table id="table">
+            
+                <% for(let i=0;i<data.length;i++) { %>
+                    <tr >
+                        <% for(let j=0;j<data[i].length;j++) { %>
+                            <td  style="border:2px solid black;"><%= data[i][j] %></td>
+                        <%}%>
+                    </tr>
+                <%}%>
+                
+            
+        </table>
+        <%}%>
+    </div>
+    <script src="/home.js"></script>
+</body>
+</html>
