@@ -1,0 +1,42 @@
+h4{
+    color:white
+}
+body{
+    text-align: center;
+    background-color:#39424e;
+    color: #39424e
+}
+input{
+    padding: 2% 10%;
+    text-align: center;
+    background-color:lightgrey;
+}
+
+div{
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+form{
+    margin-top: 10%;
+    width: auto;
+    height: 100%;
+}
+
+#signup{
+    margin: auto;
+    width: 50%;
+    height: 300px;
+    border-radius: 5%;
+}
+
+button{
+   width: 30% !important;
+   padding: 5px;
+    margin-top: 30px;
+    margin: auto;
+}
+
+a{
+    color:white
+}

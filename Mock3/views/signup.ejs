@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+    
+    <form action="/user/createUser" method="POST">
+        <h4>Welcome</h4>
+
+        <div id="signup" class="card">
+            <div>
+                <input type="text" name="email" placeholder="name" required>
+            </div>
+            
+            <div>
+                <input type="password" name="password" placeholder="password" required>
+            </div>
+            <button>signup</button>
+        </div>
+        <a href="/user/signin">Already have an account</a>
+    </form>
+    
+</body>
+</html>
