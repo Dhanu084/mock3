@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/signup.css">
 </head>
 <body>
+    
     
     <form action="/user/createUser" method="POST">
         <h4>Welcome</h4>
@@ -24,6 +27,20 @@
         </div>
         <a href="/user/signin">Already have an account</a>
     </form>
-    
+
+       
+    <%= flash.error %>
+    <% console.log(flash.error)%>
+    <script>
+        <% if(flash.error && flash.error.length>0) {%>
+            new Noty({
+                theme:'bootstrap-v3',
+                text:"<%= flash.error %>",
+                type:'error',
+                layout:'topLeft',
+                timeout:1500
+            }).show();
+        <%}%>
+    </script>
 </body>
 </html>
