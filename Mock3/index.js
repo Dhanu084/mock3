@@ -59,7 +59,7 @@ app.post('/captcha', passport.authenticate(
 ),async function(req, res) {
    
     var secretKey = "6LfJXuoUAAAAAHZcSWf8LWjdIKUBeeLE6ry4DVn2";
-    console.log(req.body['g-recaptcha-response']);
+    //console.log(req.body['g-recaptcha-response']);
     if(req.body === undefined || req.body === '' || req.body === null)
   {
       console.log("req.body ", req.body);
