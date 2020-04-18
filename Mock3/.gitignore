@@ -1,3 +1,3 @@
 node_modules/
 ./config/nodemailer/
-./index.js
+index.js
