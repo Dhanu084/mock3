@@ -48,8 +48,6 @@ app.use(customMware.setFlash);
 
 
 
-// const secretKey = '6LfJXuoUAAAAAHZcSWf8LWjdIKUBeeLE6ry4DVn2';
-// const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${token}`;
 
 app.use('/',require('./routes'));
 
@@ -58,7 +56,7 @@ app.post('/captcha', passport.authenticate(
     {failureRedirect:'/'}
 ),async function(req, res) {
    
-    var secretKey = "6LfJXuoUAAAAAHZcSWf8LWjdIKUBeeLE6ry4DVn2";
+    var secretKey = "";
     //console.log(req.body['g-recaptcha-response']);
     if(req.body === undefined || req.body === '' || req.body === null)
   {
