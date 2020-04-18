@@ -18,7 +18,7 @@ div{
 }
 
 form{
-    margin-top: 10%;
+    margin-top: 1%;
     width: auto;
     height: 100%;
 }
@@ -26,7 +26,7 @@ form{
 #signup{
     margin: auto;
     width: 50%;
-    height: 300px;
+    height: auto;
     border-radius: 5%;
 }
 
@@ -35,8 +35,25 @@ button{
    padding: 5px;
     margin-top: 30px;
     margin: auto;
+    color:#39424e;
+    background-color:white;
+    font-weight: 900;
+}
+button:hover{
+    color:white;
+    background-color:#39424e;
 }
 
 a{
     color:white
+}
+
+.fa-envelope-open{
+    color:black;
+    font-size: 10rem;
+}
+
+span{
+    width: 10rem;
+    display: block;
 }

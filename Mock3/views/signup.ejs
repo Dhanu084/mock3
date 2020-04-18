@@ -4,26 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/signup.css">
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfJXuoUAAAAAAX_DDCWhfSNFJ1OIhb_R-IUYVHJ"></script>
+
 </head>
 <body>
     
     
-    <form action="/user/createUser" method="POST">
+    <form action="/user/createUser" method="POST" id="signup-form">
         <h4>Welcome</h4>
 
         <div id="signup" class="card">
+            <!-- <div>
+                <input type="text" name="g-recaptcha-response" id="g-recaptcha-response" >  
+            </div>
+             -->
             <div>
-                <input type="text" name="email" placeholder="name" required>
+                <input type="text" name="email" placeholder="email">
             </div>
             
             <div>
-                <input type="password" name="password" placeholder="password" required>
+                <input type="password" name="password" placeholder="password" required >
             </div>
-            <button>signup</button>
+            <div>
+                <input type="password" name="confirm_password" placeholder="password" required>
+            </div>
+            <div>
+                <button>signup</button>
+            </div>
         </div>
         <a href="/user/signin">Already have an account</a>
     </form>
@@ -42,5 +55,18 @@
             }).show();
         <%}%>
     </script>
+    
+    <!-- <script>
+        grecaptcha.ready(function() {
+        // do request for recaptcha token
+        // response is promise with passed token
+            grecaptcha.execute('6LfJXuoUAAAAAAX_DDCWhfSNFJ1OIhb_R-IUYVHJ', {action:'homepage'})
+                      .then(function(token) {
+                // add token value to form
+                console.log('token',token);
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script> -->
 </body>
 </html>
