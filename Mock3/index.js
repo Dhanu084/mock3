@@ -48,36 +48,46 @@ app.use(customMware.setFlash);
 
 
 
-//const secretKey = '6LfJXuoUAAAAAHZcSWf8LWjdIKUBeeLE6ry4DVn2';
-//const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${token}`;
+// const secretKey = '6LfJXuoUAAAAAHZcSWf8LWjdIKUBeeLE6ry4DVn2';
+// const url = `https://www.google.com/recaptcha/api/siteverify?secret=${secret_key}&response=${token}`;
 
 app.use('/',require('./routes'));
 
-// app.post('/captcha', function(req, res) {
-//     //console.log(req.body['g-recaptcha-response']);
-//     // if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
-//     // {
-//     //   return res.json({"responseError" : "something goes to wrong"});
-//     // }
-//     var secretKey = "6LfJXuoUAAAAAHZcSWf8LWjdIKUBeeLE6ry4DVn2";
-//     var response = JSON.stringify(req.body['g-recaptcha-response']);
-//     var user_ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-//     request({
-//         url: 'https://www.google.com/recaptcha/api/siteverify?secret='+secretKey+'&response='+response+'&remoteip='+user_ip,
-//         method: 'POST',
-//         //      
-//     }, function (err, response, body) {
-//         if (err) {
-//             res.status(500).send({
-//                 error: "Could not verify captcha"
-//             });
-//         } else {
-//             res.status(200).send({
-//                 message: body
-//             });
-//         }
-//     });
-//   });
+app.post('/captcha', passport.authenticate(
+    'local',
+    {failureRedirect:'/'}
+),async function(req, res) {
+   
+    var secretKey = "6LfJXuoUAAAAAHZcSWf8LWjdIKUBeeLE6ry4DVn2";
+    console.log(req.body['g-recaptcha-response']);
+    if(req.body === undefined || req.body === '' || req.body === null)
+  {
+      console.log("req.body ", req.body);
+      req.flash('error','reCAPTCHA Incorrect');
+      return res.redirect('back');
+  }
+  
+  try{
+      //verification URL
+    const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+    //check if captcha is valid
+     await request(verificationURL, async function(error, response, body) {
+        body = JSON.parse(body);
+        //If not succesful
+        if(body.success !== undefined && !body.success) {
+        console.log("responseError Failed captcha verification");
+        req.flash('error','Failed captcha verification');
+        return res.redirect('/user/signin');
+        }
+        req.flash('success','logged in successfully');
+        res.redirect('/user/user-detail');
+     });
+    }
+    catch(err){
+        req.flash('error','Failed captcha verification');
+        res.redirect('/user/signin')
+    }
+  });
 
   
 app.listen(port,function (err){
