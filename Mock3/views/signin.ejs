@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/signup.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/fontawesome.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render="></script>
+</head>
+<body>
+
+    <form action="/captcha" method="POST">
+        <h4>Welcome</h4>
+        <div id="signup" class="card">
+            <div>
+                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" >  
+            </div>
+            <div>
+               <span><i class="fas fa-envelope-open"></i></span> <input type="text" name="email" placeholder="name" required>
+            </div>
+            
+            <div>
+                <input type="password" name="password" placeholder="password" required>
+            </div>
+            <div>
+                <button>signin</button>
+            </div>
+        </div>
+        <a href="/user/forgot-password">Forgot password?</a>
+    </form>
+
+
+    <script>
+        <% if(flash.success && flash.success.length>0) {%>
+            new Noty({
+                theme:'bootstrap-v3',
+                text:"<%= flash.success %>",
+                type:'success',
+                layout:'topRight',
+                timeout:1500
+            }).show();
+        <%}%>
+
+        <% if(flash.error && flash.error.length>0) {%>
+            new Noty({
+                theme:'bootstrap-v3',
+                text:"<%= flash.error %>",
+                type:'error',
+                layout:'topLeft',
+                timeout:1500
+            }).show();
+        <%}%>
+
+        
+    </script>
+    <script>
+        grecaptcha.ready(function() {
+        // do request for recaptcha token
+        // response is promise with passed token
+            grecaptcha.execute('', {action:'homepage'})
+                      .then(function(token) {
+                // add token value to form
+                //console.log('token',token);
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
+    
+
+</body>
+</html>

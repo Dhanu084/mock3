@@ -1,0 +1,59 @@
+h4{
+    color:white
+}
+body{
+    text-align: center;
+    background-color:#39424e;
+    color: #39424e
+}
+input{
+    padding: 2% 10%;
+    text-align: center;
+    background-color:lightgrey;
+}
+
+div{
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+form{
+    margin-top: 1%;
+    width: auto;
+    height: 100%;
+}
+
+#signup{
+    margin: auto;
+    width: 50%;
+    height: auto;
+    border-radius: 5%;
+}
+
+button{
+   width: 30% !important;
+   padding: 5px;
+    margin-top: 30px;
+    margin: auto;
+    color:#39424e;
+    background-color:white;
+    font-weight: 900;
+}
+button:hover{
+    color:white;
+    background-color:#39424e;
+}
+
+a{
+    color:white
+}
+
+.fa-envelope-open{
+    color:black;
+    font-size: 10rem;
+}
+
+span{
+    width: 10rem;
+    display: block;
+}
